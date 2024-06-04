@@ -25,7 +25,7 @@ export default function Apods() {
             />
             <div className="flex flex-col gap-2">
               <p>{apod.date}</p>
-              <p className="transition ease-in-out delay-50 group-hover:text-blue-500 font-bold">
+              <p className="transition ease-in-out delay-50 group-hover:text-blue-400 font-bold">
                 {apod.title}
               </p>
             </div>
