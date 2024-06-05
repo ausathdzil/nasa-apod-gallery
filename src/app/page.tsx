@@ -1,13 +1,10 @@
-import Apods from './components/Apods';
+import Apod from './components/Apod';
 
 export default function Home() {
   return (
-    <main className="flex flex-col justify-center items-center text-center gap-8 my-8">
-      <div className="flex flex-col gap-2">
-        <h1 className="font-bold text-3xl">APODs</h1>
-        <h1>Astronomy Picture of the Day</h1>
-      </div>
-      <Apods />
+    <main className="flex flex-col justify-center items-center text-center gap-8">
+      <h1 className="font-bold text-xl sm:text-3xl">Astronomy Picture of the Day</h1>
+      <Apod />
     </main>
   );
 }
