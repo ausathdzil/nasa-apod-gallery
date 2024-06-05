@@ -14,7 +14,7 @@ export function ApodItem({ apod }: ApodItemProps) {
     >
       <Link href={`/gallery/${encodeURIComponent(apod.date)}`}>
         <Image
-          className="rounded-xl transition ease-in-out group-hover:scale-105 w-[300px] h-[300px] object-cover"
+          className="rounded-xl transition ease-in-out group-hover:scale-105 w-[300px] h-[300px] object-cover shadow-xl"
           src={apod.url}
           alt={apod.title}
           width={300}

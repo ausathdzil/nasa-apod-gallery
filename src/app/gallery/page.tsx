@@ -2,6 +2,7 @@
 
 import { useApods } from '../hooks/useApods';
 import { ApodItem } from '../components/ApodItem';
+import ApodItemSkeleton from '../components/ApodItemSkeleton';
 
 export default function Gallery() {
   const apods = useApods();
@@ -11,7 +12,7 @@ export default function Gallery() {
       <h1 className="font-bold text-3xl">APODs</h1>
       <ul className="max-w-[1024px] flex flex-wrap justify-center items-start gap-8">
         {!apods || apods.length === 0 ? (
-          <div className="flex justify-center items-center">Loading...</div>
+          <ApodItemSkeleton />
         ) : (
           apods.map((apod) => (
             <ApodItem
