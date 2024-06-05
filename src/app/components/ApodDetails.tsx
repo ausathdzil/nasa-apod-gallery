@@ -11,7 +11,7 @@ export default function Apods() {
   }
 
   return (
-    <div className="m-4 max-w-[768px] sm:max-w-[1024px] flex flex-col sm:flex-row justify-center items-start gap-8">
+    <div className="m-4 max-w-[768px] sm:max-w-[1024px] flex flex-col lg:flex-row justify-center items-center lg:items-start gap-8">
       <Image
         className="rounded-xl transition ease-in-out group-hover:scale-105 w-[500px] h-[500px] object-cover"
         src={apods[0].url}
@@ -22,13 +22,11 @@ export default function Apods() {
       />
       <div className="grid grid-cols-1 gap-4 sm:text-start">
         <div>
-          <h1 className="text-xl text-blue-400 font-bold">
-            {apods[0].title}
-          </h1>
+          <h1 className="text-xl text-blue-400 font-bold">{apods[0].title}</h1>
           {apods[0].copyright && <p>apods[0].copyright</p>}
           <p>{apods[0].date}</p>
         </div>
-        <p className='text-start'>{apods[0].explanation}</p>
+        <p className="text-start">{apods[0].explanation}</p>
       </div>
     </div>
   );

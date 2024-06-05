@@ -4,7 +4,7 @@ const secret = process.env.NEXT_PUBLIC_NASA_API_KEY;
 const date = new Date();
 const today = date.toISOString().split('T')[0];
 
-type Apod = {
+export type Apod = {
   date: string;
   url: string;
   title: string;
@@ -15,7 +15,7 @@ type Apod = {
 };
 
 export function useApods(): Apod[] {
-  const [apods, setApods] = useState([]);
+  const [apods, setApods] = useState<Apod[]>([]);
 
   useEffect(() => {
     async function fetchAPOD() {
