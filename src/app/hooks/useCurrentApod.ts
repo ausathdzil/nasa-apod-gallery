@@ -1,7 +1,6 @@
 import { useState, useEffect, useDebugValue } from 'react';
 import { Apod } from '@/lib/types';
-
-const secret = process.env.NEXT_PUBLIC_NASA_API_KEY;
+import { secret } from '@/lib/constants';
 
 export function useCurrentApod(date: string): Apod | undefined {
   const [apod, setApod] = useState<Apod>();
