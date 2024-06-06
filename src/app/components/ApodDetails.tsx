@@ -26,7 +26,7 @@ export default function Apods() {
               <h1 className="text-xl text-blue-400 font-bold">
                 {apods[0].title}
               </h1>
-              {apods[0].copyright && <p>apods[0].copyright</p>}
+              {apods[0].copyright && <p>{apods[0].copyright}</p>}
               <p>{apods[0].date}</p>
             </div>
             <p className="text-start">{apods[0].explanation}</p>

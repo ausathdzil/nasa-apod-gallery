@@ -1,12 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Apod } from '../hooks/useApods';
+import { Apod } from '@/lib/types';
 
-type ApodItemProps = {
-  apod: Apod;
-};
-
-export function ApodItem({ apod }: ApodItemProps) {
+export function ApodItem({ apod }: { apod: Apod }) {
   return (
     <li
       key={apod.date}

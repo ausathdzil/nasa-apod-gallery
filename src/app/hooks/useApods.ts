@@ -1,27 +1,23 @@
 import { useState, useEffect, useDebugValue } from 'react';
+import { Apod } from '@/lib/types';
 
 const secret = process.env.NEXT_PUBLIC_NASA_API_KEY;
-const date = new Date();
-const today = date.toISOString().split('T')[0];
 
-export type Apod = {
-  date: string;
-  url: string;
-  title: string;
-  media_type: string;
-  thumbnail_url: string;
-  explanation: string;
-  copyright?: string;
-};
+const date = new Date();
+const endDate = date.toISOString().split('T')[0];
+
+const startDate = new Date(date);
+startDate.setDate(startDate.getDate() - 15);
+const formattedStartDate = startDate.toISOString().split('T')[0];
 
 export function useApods(): Apod[] {
   const [apods, setApods] = useState<Apod[]>([]);
 
   useEffect(() => {
-    async function fetchAPOD() {
+    async function fetchApods() {
       try {
         const response = await fetch(
-          `https://api.nasa.gov/planetary/apod?api_key=${secret}&start_date=2024-05-18&end_date=${today}&thumbs=True`,
+          `https://api.nasa.gov/planetary/apod?api_key=${secret}&start_date=${formattedStartDate}&end_date=${endDate}&thumbs=True`,
           {
             next: {
               revalidate: 3600,
@@ -32,7 +28,6 @@ export function useApods(): Apod[] {
 
         const modifiedData = data
           .toReversed()
-          .slice(0, 15)
           .map((apod: Apod) => {
             if (apod.media_type === 'video') {
               apod.url = apod.thumbnail_url;
@@ -47,7 +42,7 @@ export function useApods(): Apod[] {
       }
     }
 
-    fetchAPOD();
+    fetchApods();
   }, []);
 
   useDebugValue(apods ?? 'loading..');
