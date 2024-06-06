@@ -2,7 +2,7 @@
 
 import { useApods } from '../hooks/useApods';
 import { ApodItem } from '../components/ApodItem';
-import ApodItemSkeleton from '../components/ApodItemSkeleton';
+import ApodItemSkeleton from '../components/skeletons/ApodItemSkeleton';
 
 export default function Gallery() {
   const apods = useApods();

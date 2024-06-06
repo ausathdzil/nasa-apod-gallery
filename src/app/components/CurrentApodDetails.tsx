@@ -9,13 +9,13 @@ export default function Page({ params }: datePageProps) {
   const apod = useCurrentApod(params.date);
 
   return (
-    <div className="mx-4 xl:mx-0 max-w-[768px] sm:max-w-[1024px] flex flex-col lg:flex-row justify-center items-center lg:items-start">
+    <div className="m-4 max-w-[768px] sm:max-w-[1024px] flex flex-col lg:flex-row justify-center items-center lg:items-start">
       {!apod ? (
         <CurrentApodSkeleton />
       ) : (
         <div className="flex flex-col gap-8">
           <h1 className="text-3xl text-blue-400 font-bold">{apod.title}</h1>
-          <div className="flex flex-col lg:flex-row gap-8 items-start">
+          <div className="flex flex-row gap-8 items-start">
             <Image
               className="rounded-xl transition ease-in-out group-hover:scale-105 w-[500px] h-[500px] object-cover"
               src={apod.url}
@@ -24,7 +24,7 @@ export default function Page({ params }: datePageProps) {
               height={500}
               priority={true}
             />
-            <div className="grid grid-cols-1 gap-4 lg:text-start max-w-[500px]">
+            <div className="grid grid-cols-1 gap-4 sm:text-start max-w-[500px]">
               <div>
                 {apod.copyright && (
                   <h1 className="text-xl font-bold">{apod.copyright}</h1>
