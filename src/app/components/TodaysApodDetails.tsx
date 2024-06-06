@@ -5,7 +5,7 @@ import ApodDetailsSkeleton from './skeletons/ApodDetailsSkeleton';
 import Image from 'next/image';
 import { today } from '@/lib/constants';
 
-export default function Apods() {
+export default function TodaysApodDetails() {
   const apod = useCurrentApod(today);
 
   return (

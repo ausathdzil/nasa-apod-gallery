@@ -2,9 +2,9 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 export default function CurrentApodSkeleton() {
   return (
-    <div className="flex flex-col gap-4">
-      <Skeleton className="w-[300px] lg:w-[1024px] h-[36px] rounded-xl" />
-      <div className="flex gap-4">
+    <div className="flex flex-col gap-4 items-center">
+      <Skeleton className="w-[300px] sm:w-[500px] lg:w-[1008px] h-[36px] rounded-xl" />
+      <div className="flex flex-col lg:flex-row gap-4">
         <Skeleton className="w-[300px] sm:w-[500px] h-[500px] rounded-xl" />
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
