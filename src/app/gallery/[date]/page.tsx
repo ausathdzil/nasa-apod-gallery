@@ -17,7 +17,7 @@ export default function Page({ params }: datePageProps) {
           <h1 className="text-3xl text-blue-400 font-bold">{apod.title}</h1>
           <div className="flex flex-col lg:flex-row gap-8 items-start">
             <Image
-              className="rounded-xl transition ease-in-out group-hover:scale-105 w-[500px] h-[500px] object-cover"
+              className="rounded-xl transition ease-in-out group-hover:scale-105 w-[500px] h-[300px] sm:h-[500px] object-cover"
               src={apod.url}
               alt={apod.title}
               width={500}

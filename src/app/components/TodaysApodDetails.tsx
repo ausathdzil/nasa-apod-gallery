@@ -15,7 +15,7 @@ export default function TodaysApodDetails() {
       ) : (
         <>
           <Image
-            className="rounded-xl transition ease-in-out group-hover:scale-105 w-[500px] h-[500px] object-cover"
+            className="rounded-xl transition ease-in-out group-hover:scale-105 w-[500px] h-[300px] sm:h-[500px] object-cover"
             src={apod.url}
             alt={apod.title}
             width={500}
