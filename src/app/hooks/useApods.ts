@@ -4,6 +4,7 @@ import { secret, today, formattedStartDate } from '@/lib/constants';
 
 export function useApods(): Apod[] {
   const [apods, setApods] = useState<Apod[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchApods() {
@@ -18,6 +19,10 @@ export function useApods(): Apod[] {
         );
         const data = await response.json();
 
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status}`);
+        }
+
         const modifiedData = data.toReversed().map((apod: Apod) => {
           if (apod.media_type === 'video') {
             apod.url = apod.thumbnail_url;
@@ -27,8 +32,9 @@ export function useApods(): Apod[] {
         });
 
         setApods(modifiedData);
+        setError(null);
       } catch (error: any) {
-        console.error(error.message);
+        setError(error.message);
       }
     }
 
@@ -36,6 +42,11 @@ export function useApods(): Apod[] {
   }, []);
 
   useDebugValue(apods ?? 'loading..');
+
+  if (error) {
+    console.error(error);
+    return [];
+  }
 
   return apods;
 }

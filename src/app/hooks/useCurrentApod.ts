@@ -4,6 +4,7 @@ import { secret } from '@/lib/constants';
 
 export function useCurrentApod(date: string): Apod | undefined {
   const [apod, setApod] = useState<Apod>();
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchCurrentApod(apodDate: string) {
@@ -13,14 +14,24 @@ export function useCurrentApod(date: string): Apod | undefined {
         );
         const data = await response.json();
 
-        if (data.media_type === 'video') {
+        if (response.status === 404) {
+          const previousDate = new Date(apodDate);
+          previousDate.setDate(previousDate.getDate() - 1);
+          return fetchCurrentApod(previousDate.toISOString().split('T')[0]);
+        }
+
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status}`);
+        }
+
+        if (data.media_type === 'video' && data.thumbnail_url) {
           data.url = data.thumbnail_url;
         }
 
         setApod(data);
+        setError(null);
       } catch (error: any) {
-        console.error(error.message);
-        throw error;
+        setError(error.message);
       }
     }
 
@@ -28,6 +39,11 @@ export function useCurrentApod(date: string): Apod | undefined {
   }, [date]);
 
   useDebugValue(apod ?? 'loading...');
+
+  if (error) {
+    console.error(error);
+    return undefined;
+  }
 
   return apod;
 }

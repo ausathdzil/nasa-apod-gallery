@@ -12,7 +12,7 @@ export default function Footer() {
       <Separator />
       <div className="flex justify-between items-center">
         <p className="text-zinc-500">Ausath Abdi Dzil Ikram</p>
-        <nav className="flex gap-4">
+        <nav className="flex gap-0 md:gap-2">
           <Link
             href="https://github.com/ausathdzil"
             target="_blank"
