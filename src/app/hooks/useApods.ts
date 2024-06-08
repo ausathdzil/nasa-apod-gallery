@@ -10,12 +10,7 @@ export function useApods(): Apod[] {
     async function fetchApods() {
       try {
         const response = await fetch(
-          `https://api.nasa.gov/planetary/apod?api_key=${secret}&start_date=${formattedStartDate}&end_date=${today}&thumbs=True`,
-          {
-            next: {
-              revalidate: 3600,
-            },
-          }
+          `https://api.nasa.gov/planetary/apod?api_key=${secret}&start_date=${formattedStartDate}&end_date=${today}&thumbs=True`
         );
         const data = await response.json();
 
