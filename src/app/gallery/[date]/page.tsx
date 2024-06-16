@@ -1,12 +1,13 @@
 'use client';
 
-import { useCurrentApod } from '@/app/hooks/useCurrentApod';
+import { useApods } from '@/app/hooks/useApods';
 import { datePageProps } from '@/lib/types';
 import CurrentApodSkeleton from '@/app/components/skeletons/CurrentApodSkeleton';
 import Image from 'next/image';
 
 export default function Page({ params }: datePageProps) {
-  const apod = useCurrentApod(params.date);
+  const apods = useApods();
+  const apod = apods ? apods.find((apod) => apod.date === params.date) : null;
 
   return (
     <div className="mx-4 xl:mx-0 max-w-[768px] sm:max-w-[1024px] flex flex-col lg:flex-row justify-center items-center lg:items-start">

@@ -1,12 +1,12 @@
 'use client';
 
-import { useCurrentApod } from '../hooks/useCurrentApod';
+import { useApods } from '../hooks/useApods';
 import ApodDetailsSkeleton from './skeletons/ApodDetailsSkeleton';
 import Image from 'next/image';
-import { today } from '@/lib/constants';
 
 export default function TodaysApodDetails() {
-  const apod = useCurrentApod(today);
+  const apods = useApods();
+  const apod = apods ? apods[apods.length - 1] : null;
 
   return (
     <div className="m-4 max-w-[768px] sm:max-w-[1024px] flex flex-col lg:flex-row justify-center items-center lg:items-start gap-8">

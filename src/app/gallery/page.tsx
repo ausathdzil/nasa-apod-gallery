@@ -5,7 +5,8 @@ import { ApodItem } from '../components/ApodItem';
 import ApodItemSkeleton from '../components/skeletons/ApodItemSkeleton';
 
 export default function Gallery() {
-  const apods = useApods();
+  const data = useApods();
+  const apods = data ? [...data].reverse() : [];
 
   return (
     <>
