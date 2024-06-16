@@ -3,6 +3,10 @@ import Image from 'next/image';
 import { Apod } from '@/lib/types';
 
 export function ApodItem({ apod }: { apod: Apod }) {
+  if (apod.media_type === 'video') {
+    apod.url = apod.thumbnail_url;
+  }
+
   return (
     <li
       key={apod.date}
@@ -11,7 +15,7 @@ export function ApodItem({ apod }: { apod: Apod }) {
       <Link href={`/gallery/${encodeURIComponent(apod.date)}`}>
         <Image
           className="rounded-xl transition ease-in-out group-hover:scale-105 w-[300px] h-[300px] object-cover shadow-xl"
-          src={apod.url}
+          src={apod.url ? apod.url : apod.thumbnail_url}
           alt={apod.title}
           width={300}
           height={300}

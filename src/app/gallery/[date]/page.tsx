@@ -9,6 +9,10 @@ export default function Page({ params }: datePageProps) {
   const apods = useApods();
   const apod = apods ? apods.find((apod) => apod.date === params.date) : null;
 
+  if (apod?.media_type === 'video') {
+    apod.url = apod.thumbnail_url;
+  }
+
   return (
     <div className="mx-4 xl:mx-0 max-w-[768px] sm:max-w-[1024px] flex flex-col lg:flex-row justify-center items-center lg:items-start">
       {!apod ? (
@@ -19,7 +23,7 @@ export default function Page({ params }: datePageProps) {
           <div className="flex flex-col lg:flex-row gap-8 items-start">
             <Image
               className="rounded-xl transition ease-in-out group-hover:scale-105 w-[500px] h-[300px] sm:h-[500px] object-cover"
-              src={apod.url}
+              src={apod.url ? apod.url : apod.thumbnail_url}
               alt={apod.title}
               width={500}
               height={500}

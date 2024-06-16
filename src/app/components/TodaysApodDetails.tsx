@@ -8,6 +8,10 @@ export default function TodaysApodDetails() {
   const apods = useApods();
   const apod = apods ? apods[apods.length - 1] : null;
 
+  if (apod?.media_type === 'video') {
+    apod.url = apod.thumbnail_url;
+  }
+
   return (
     <div className="m-4 max-w-[768px] sm:max-w-[1024px] flex flex-col lg:flex-row justify-center items-center lg:items-start gap-8">
       {!apod ? (
