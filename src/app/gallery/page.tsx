@@ -1,4 +1,4 @@
-import { getApods } from '@/lib/getApods';
+import { getApods } from '@/lib/data';
 import { ApodItem } from '../components/ApodItem';
 
 export default async function Gallery() {

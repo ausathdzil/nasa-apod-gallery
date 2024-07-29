@@ -1,13 +1,12 @@
 export type Apod = {
-  date: string;
-  url: string;
-  title: string;
-  media_type: string;
-  thumbnail_url: string;
-  explanation: string;
   copyright?: string;
+  date: string;
+  explanation: string;
+  media_type: string;
+  title: string;
+  url: string;
+  thumbnail_url: string;
 };
-
 
 export type datePageProps = {
   params: {
