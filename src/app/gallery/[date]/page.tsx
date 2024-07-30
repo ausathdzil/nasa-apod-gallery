@@ -1,21 +1,12 @@
-import { datePageProps } from '@/lib/types';
 import { getApod } from '@/lib/data';
 import Image from 'next/image';
 
-export default async function Page({ params }: datePageProps) {
-  const date = params.date;
-  console.log(date);
-  const apod = await getApod(date);
+export default async function Page({ params }: { params: { date: string } }) {
+  const apod = await getApod(params.date);
 
   if (apod.media_type === 'video') {
     apod.url = apod.thumbnail_url;
   }
-
-  // if (!apod) {
-  //   return <h1>Apod not found</h1>;
-  // }
-
-  console.log(apod);
 
   return (
     <div className="mx-4 xl:mx-0 max-w-[768px] sm:max-w-[1024px] flex flex-col lg:flex-row justify-center items-center lg:items-start">

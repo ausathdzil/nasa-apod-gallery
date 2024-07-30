@@ -20,7 +20,7 @@ export default async function TodaysApodDetails() {
     <div className="m-4 max-w-[768px] sm:max-w-[1024px] flex flex-col lg:flex-row justify-center items-center lg:items-start gap-8">
       <Image
         className="rounded-xl transition ease-in-out group-hover:scale-105 w-[500px] h-[300px] sm:h-[500px] object-cover"
-        src={apod?.url ? apod.url : apod.thumbnail_url}
+        src={apod?.url ?? ''}
         alt={apod?.title ?? ''}
         width={500}
         height={500}

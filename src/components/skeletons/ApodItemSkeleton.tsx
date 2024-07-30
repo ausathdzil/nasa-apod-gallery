@@ -3,7 +3,6 @@ import { Skeleton } from '@/components/ui/skeleton';
 export default function ApodItemSkeleton() {
   return (
     <>
-      <h1 className="font-bold text-3xl">APODs</h1>
       <ul className="max-w-[1024px] flex flex-wrap justify-center items-start gap-8">
         <div className="flex flex-col gap-4 w-[300px]">
           <Skeleton className="w-[300px] h-[300px] rounded-xl" />

@@ -1,4 +1,4 @@
-import TodaysApodDetails from './components/TodaysApodDetails';
+import TodaysApodDetails from '../components/TodaysApodDetails';
 
 export default function Home() {
   return (

@@ -1,9 +1,8 @@
 import { Apod } from '@/lib/types';
-import { secret, today, formattedStartDate } from '@/lib/constants';
 
 export async function getApod(currentDate: string): Promise<Apod> {
   const res = await fetch(
-    `https://api.nasa.gov/planetary/apod?api_key=${secret}&date=${currentDate}&thumbs=True`,
+    `https://api.nasa.gov/planetary/apod?api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}&date=${currentDate}&thumbs=True`,
     { next: { revalidate: 600 } }
   );
 
@@ -14,9 +13,12 @@ export async function getApod(currentDate: string): Promise<Apod> {
   return res.json();
 }
 
-export async function getApods(): Promise<Apod[]> {
+export async function getApods(
+  startDate: string,
+  endDate: string
+): Promise<Apod[]> {
   const res = await fetch(
-    `https://api.nasa.gov/planetary/apod?api_key=${secret}&start_date=${formattedStartDate}&end_date=${today}&thumbs=True`,
+    `https://api.nasa.gov/planetary/apod?api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}&start_date=${startDate}&end_date=${endDate}&thumbs=True`,
     { next: { revalidate: 600 } }
   );
 

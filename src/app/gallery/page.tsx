@@ -1,13 +1,19 @@
 import { getApods } from '@/lib/data';
-import { ApodItem } from '../components/ApodItem';
+import { ApodItem } from '../../components/ApodItem';
 
 export default async function Gallery() {
-  const data = await getApods();
+  const date = new Date();
+  const endDate = date.toISOString().split('T')[0];
+
+  const startDate = new Date(date);
+  startDate.setDate(startDate.getDate() - 17);
+  const formattedStartDate = startDate.toISOString().split('T')[0];
+
+  const data = await getApods(formattedStartDate, endDate);
   const apods = data ? [...data].reverse() : [];
 
   return (
     <>
-      <h1 className="font-bold text-3xl">APODs</h1>
       <ul className="max-w-[1024px] flex flex-wrap justify-center items-start gap-8">
         {apods.map((apod) => (
           <ApodItem

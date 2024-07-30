@@ -7,9 +7,3 @@ export type Apod = {
   url: string;
   thumbnail_url: string;
 };
-
-export type datePageProps = {
-  params: {
-    date: string;
-  };
-};
