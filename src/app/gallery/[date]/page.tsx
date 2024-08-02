@@ -4,7 +4,7 @@ import Image from 'next/image';
 export default async function Page({ params }: { params: { date: string } }) {
   const apod = await getApod(params.date);
 
-  if (apod.media_type === 'video') {
+  if (apod?.media_type === 'video') {
     apod.url = apod.thumbnail_url;
   }
 
