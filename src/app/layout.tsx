@@ -27,7 +27,7 @@ export default function RootLayout({
           sizes="any"
         />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -35,7 +35,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="flex flex-col justify-center items-center text-center gap-8">
+          <main className="flex flex-col justify-center items-center text-center gap-8 mx-4 xl:mx-56">
             {children}
           </main>
           <Footer />

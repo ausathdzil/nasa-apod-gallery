@@ -2,17 +2,20 @@ import { getApod } from '@/lib/data';
 import Image from 'next/image';
 
 export default async function TodaysApodDetails() {
-  const today = new Date();
-  const yesterday = new Date(today);
-  yesterday.setDate(yesterday.getDate() - 1);
+  const date = new Date();
+  const today = date.toISOString().split('T')[0];
 
-  let apod = await getApod(today.toISOString().split('T')[0]);
+  let apod = await getApod(today);
 
-  if (!apod) {
-    apod = await getApod(yesterday.toISOString().split('T')[0]);
+  if (apod?.code === 404) {
+    const newDate = new Date(date);
+    newDate.setDate(newDate.getDate() - 1);
+    const yesterday = newDate.toISOString().split('T')[0];
+
+    apod = await getApod(yesterday);
   }
 
-  if (apod.media_type === 'video') {
+  if (apod?.media_type === 'video') {
     apod.url = apod.thumbnail_url;
   }
 

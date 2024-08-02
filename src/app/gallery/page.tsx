@@ -1,27 +1,34 @@
-import { getApods } from '@/lib/data';
-import { ApodItem } from '../../components/ApodItem';
+import ApodItems from '@/components/ApodItems';
 
 export default async function Gallery() {
   const date = new Date();
   const endDate = date.toISOString().split('T')[0];
 
-  const startDate = new Date(date);
-  startDate.setDate(startDate.getDate() - 17);
-  const formattedStartDate = startDate.toISOString().split('T')[0];
+  const newDate = new Date(date);
+  newDate.setDate(newDate.getDate() - 17);
+  const startDate = newDate.toISOString().split('T')[0];
 
-  const data = await getApods(formattedStartDate, endDate);
-  const apods = data ? [...data].reverse() : [];
+  const formattedStartDate = newDate.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+
+  const formattedEndDate = date.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
 
   return (
-    <>
-      <ul className="max-w-[1024px] flex flex-wrap justify-center items-start gap-8">
-        {apods.map((apod) => (
-          <ApodItem
-            key={apod.date}
-            apod={apod}
-          />
-        ))}
-      </ul>
-    </>
+    <div className="w-full space-y-8">
+      <h1 className="text-center text-xl">
+        {formattedStartDate} - {formattedEndDate}
+      </h1>
+      <ApodItems
+        startDate={startDate}
+        endDate={endDate}
+      />
+    </div>
   );
 }

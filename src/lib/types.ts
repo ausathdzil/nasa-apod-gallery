@@ -1,4 +1,5 @@
 export type Apod = {
+  code?: number;
   copyright?: string;
   date: string;
   explanation: string;
