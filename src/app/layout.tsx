@@ -1,9 +1,9 @@
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import { ThemeProvider } from '@/components/theme-provider';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { ThemeProvider } from '@/components/theme-provider';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -35,7 +35,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="flex flex-col justify-center items-center text-center gap-8 mx-4 xl:mx-56">
+          <main className="flex flex-col justify-center items-center text-center gap-8 mx-2 sm:mx-16 lg:mx-auto max-w-5xl min-h-[calc(100vh-225px)]">
             {children}
           </main>
           <Footer />

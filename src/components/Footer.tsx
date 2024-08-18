@@ -8,7 +8,7 @@ import { Linkedin } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col my-8 mx-auto max-w-[280px] md:max-w-[512px] lg:max-w-[768px] xl:max-w-[1024px] gap-4">
+    <footer className="flex flex-col py-8 mx-2 sm:mx-16 lg:mx-auto max-w-4xl gap-4">
       <Separator />
       <div className="flex justify-between items-center">
         <p className="text-zinc-500">Ausath Abdi Dzil Ikram</p>

@@ -4,8 +4,12 @@ import Image from 'next/image';
 export default async function Page({ params }: { params: { date: string } }) {
   const apod = await getApod(params.date);
 
-  if (apod?.media_type === 'video') {
-    apod.url = apod.thumbnail_url;
+  if (apod.code === 404) {
+    return <>{apod.msg}</>;
+  }
+
+  if (apod.media_type === 'video' && apod.thumbnail_url !== '') {
+    apod.url = apod.thumbnail_url ?? '';
   }
 
   return (
@@ -15,20 +19,20 @@ export default async function Page({ params }: { params: { date: string } }) {
         <div className="flex flex-col lg:flex-row gap-8 items-start">
           <Image
             className="rounded-xl transition ease-in-out group-hover:scale-105 w-[500px] h-[300px] sm:h-[500px] object-cover"
-            src={apod?.url ?? ''}
-            alt={apod?.title ?? ''}
+            src={apod.url}
+            alt={apod.title}
             width={500}
             height={500}
             priority={true}
           />
           <div className="grid grid-cols-1 gap-4 lg:text-start max-w-[500px]">
             <div>
-              {apod?.copyright && (
+              {apod.copyright && (
                 <h1 className="text-xl font-bold">{apod.copyright}</h1>
               )}
-              <p>{apod?.date}</p>
+              <p>{apod.date}</p>
             </div>
-            <p className="text-start">{apod?.explanation}</p>
+            <p className="text-start">{apod.explanation}</p>
           </div>
         </div>
       </div>

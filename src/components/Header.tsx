@@ -8,7 +8,7 @@ import { ModeToggle } from './ModeToggle';
 export default function Header() {
   return (
     <header>
-      <nav className="flex justify-between items-center my-8 mx-auto max-w-[280px] sm:max-w-[425px] lg:max-w-[768px]">
+      <nav className="flex justify-between items-center py-8 mx-2 sm:mx-16 lg:mx-auto max-w-3xl">
         <Link href="/">
           <Button
             variant="link"

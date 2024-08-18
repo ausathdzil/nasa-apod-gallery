@@ -1,6 +1,6 @@
 import { Apod } from '@/lib/types';
 
-export async function getApod(date: string): Promise<Apod | null> {
+export async function getApod(date: string): Promise<Apod> {
   try {
     const res = await fetch(
       `https://api.nasa.gov/planetary/apod?api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}&date=${date}&thumbs=True`,
@@ -10,14 +10,14 @@ export async function getApod(date: string): Promise<Apod | null> {
     return res.json();
   } catch (error) {
     console.error(error);
-    return null;
+    throw new Error('Error: failed to fetch data');
   }
 }
 
 export async function getApods(
   startDate: string,
   endDate: string
-): Promise<Apod[] | null> {
+): Promise<Apod[]> {
   try {
     const res = await fetch(
       `https://api.nasa.gov/planetary/apod?api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}&start_date=${startDate}&end_date=${endDate}&thumbs=True`,
@@ -27,6 +27,6 @@ export async function getApods(
     return res.json();
   } catch (error) {
     console.error(error);
-    return null;
+    throw new Error('Error: failed to fetch data');
   }
 }
