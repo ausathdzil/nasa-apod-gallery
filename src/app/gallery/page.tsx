@@ -1,6 +1,12 @@
 import { getApods } from '@/lib/data';
-import Image from 'next/image';
+import { Metadata } from 'next';
 import { Link } from 'next-view-transitions';
+import Image from 'next/image';
+
+export const metadata: Metadata = {
+  title: 'Gallery',
+  description: 'Collection of NASA Astronomy Picture of the Day',
+}
 
 export default async function Page() {
   const date = new Date();
@@ -26,14 +32,16 @@ export default async function Page() {
               key={apod.date}
               className="group flex flex-col items-center text-center gap-4"
             >
-              <Link href={`/gallery/${encodeURIComponent(apod.date)}`}>
+              <Link
+                href={`/gallery/${encodeURIComponent(apod.date)}`}
+                className="w-[272px] sm:w-[320px] h-[320px] relative"
+              >
                 <Image
-                  className="rounded-xl transition ease-in-out group-hover:scale-105 w-[272px] sm:w-[320px] h-[320px] object-cover shadow-xl"
+                  className="rounded-xl transition ease-in-out group-hover:scale-105 object-cover shadow-xl"
                   src={apod.url}
                   alt={apod.title}
-                  width={272}
-                  height={320}
                   priority={true}
+                  fill
                 />
               </Link>
               <div className="flex flex-col gap-2">

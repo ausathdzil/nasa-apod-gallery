@@ -25,14 +25,15 @@ export default async function Home() {
         Astronomy Picture of the Day
       </h1>
       <div className="m-4 max-w-[768px] sm:max-w-[1024px] flex flex-col lg:flex-row justify-center items-center lg:items-start gap-8">
-        <Image
-          className="rounded-xl transition ease-in-out group-hover:scale-105 w-[500px] h-[300px] sm:h-[500px] object-cover"
-          src={apod.url}
-          alt={apod.title}
-          width={500}
-          height={300}
-          priority={true}
-        />
+        <div className='w-[272px] sm:w-[500px] h-[300px] sm:h-[500px] relative'>
+          <Image
+            className="rounded-xl transition ease-in-out group-hover:scale-105 object-cover"
+            src={apod.url}
+            alt={apod.title}
+            priority={true}
+            fill
+          />
+        </div>
         <div className="grid grid-cols-1 gap-4 sm:text-start max-w-[500px]">
           <div>
             <h1 className="text-2xl text-blue-400 font-bold">{apod.title}</h1>

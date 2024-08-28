@@ -1,7 +1,6 @@
 import { getApod, getApods } from '@/lib/data';
-import { Apod } from '@/lib/types';
-import Image from 'next/image';
 import { Frown } from 'lucide-react';
+import Image from 'next/image';
 
 export const revalidate = 3600;
 
@@ -22,6 +21,19 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { date: string };
+}) {
+  const apod = await getApod(params.date);
+
+  return {
+    title: apod?.date,
+    description: apod?.title,
+  };
+}
+
 export default async function Page({ params }: { params: { date: string } }) {
   const apod = await getApod(params.date);
 
@@ -40,29 +52,30 @@ export default async function Page({ params }: { params: { date: string } }) {
   }
 
   return (
-    <div className="mx-4 xl:mx-0 max-w-[768px] sm:max-w-[1024px] flex flex-col lg:flex-row justify-center items-center lg:items-start">
-      <div className="flex flex-col gap-8">
-        <h1 className="text-3xl text-blue-400 font-bold">{apod?.title}</h1>
-        <div className="flex flex-col lg:flex-row gap-8 items-start">
+    <section className="space-y-8">
+      <h1 className="text-xl sm:text-3xl text-blue-400 font-bold">
+        {apod?.title}
+      </h1>
+      <div className="m-4 max-w-[768px] sm:max-w-[1024px] flex flex-col lg:flex-row justify-center items-center lg:items-start gap-8">
+        <div className="w-[272px] sm:w-[500px] h-[300px] sm:h-[500px] relative">
           <Image
-            className="rounded-xl transition ease-in-out group-hover:scale-105 w-[500px] h-[300px] sm:h-[500px] object-cover"
+            className="rounded-xl transition ease-in-out group-hover:scale-105 object-cover"
             src={apod.url}
             alt={apod.title}
-            width={500}
-            height={500}
             priority={true}
+            fill
           />
-          <div className="grid grid-cols-1 gap-4 lg:text-start max-w-[500px]">
-            <div>
-              {apod.copyright && (
-                <h1 className="text-xl font-bold">{apod.copyright}</h1>
-              )}
-              <p>{apod.date}</p>
-            </div>
-            <p className="text-start">{apod.explanation}</p>
+        </div>
+        <div className="grid grid-cols-1 gap-4 lg:text-start max-w-[500px]">
+          <div>
+            {apod.copyright && (
+              <h1 className="text-xl font-bold">{apod.copyright}</h1>
+            )}
+            <p>{apod.date}</p>
           </div>
+          <p className="text-start">{apod.explanation}</p>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

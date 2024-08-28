@@ -1,7 +1,7 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { ThemeProvider } from '@/components/theme-provider';
-import type { Metadata } from 'next';
+import { Metadata } from 'next';
 import { ViewTransitions } from 'next-view-transitions';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -9,7 +9,10 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'APOD Gallery',
+  title: {
+    default: 'NASA APOD',
+    template: 'APOD | %s',
+  },
   description: 'Collection of NASA Astronomy Picture of the Day',
 };
 
