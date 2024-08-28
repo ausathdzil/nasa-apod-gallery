@@ -6,7 +6,7 @@ import Image from 'next/image';
 export const metadata: Metadata = {
   title: 'Gallery',
   description: 'Collection of NASA Astronomy Picture of the Day',
-}
+};
 
 export default async function Page() {
   const date = new Date();
@@ -22,37 +22,40 @@ export default async function Page() {
   return (
     <section className="space-y-8">
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {apods.map((apod) => {
-          if (apod.media_type === 'video' && apod.thumbnail_url !== '') {
-            apod.url = apod.thumbnail_url ?? '';
-          }
-
-          return (
-            <li
-              key={apod.date}
-              className="group flex flex-col items-center text-center gap-4"
-            >
+        {apods.map((apod) => (
+          <>
+            <li key={apod.date}>
               <Link
                 href={`/gallery/${encodeURIComponent(apod.date)}`}
-                className="w-[272px] sm:w-[320px] h-[320px] relative"
+                className="group flex flex-col items-center text-center gap-4"
               >
-                <Image
-                  className="rounded-xl transition ease-in-out group-hover:scale-105 object-cover shadow-xl"
-                  src={apod.url}
-                  alt={apod.title}
-                  priority={true}
-                  fill
-                />
+                <div className="w-[272px] sm:w-[320px] h-[320px] relative">
+                  {apod.media_type === 'video' ? (
+                    <iframe
+                      className="rounded-xl w-[272px] h-[320px] sm:w-[320px]"
+                      src={apod.url}
+                      title={apod.title}
+                    />
+                  ) : (
+                    <Image
+                      className="rounded-xl object-cover"
+                      src={apod.url}
+                      alt={apod.title}
+                      priority={true}
+                      fill
+                    />
+                  )}
+                </div>
+                <article className="space-y-2">
+                  <p>{apod.date}</p>
+                  <p className="transition ease-in-out delay-50 group-hover:text-blue-400 font-bold">
+                    {apod.title}
+                  </p>
+                </article>
               </Link>
-              <div className="flex flex-col gap-2">
-                <p>{apod.date}</p>
-                <p className="transition ease-in-out delay-50 group-hover:text-blue-400 font-bold">
-                  {apod.title}
-                </p>
-              </div>
             </li>
-          );
-        })}
+          </>
+        ))}
       </ul>
     </section>
   );
