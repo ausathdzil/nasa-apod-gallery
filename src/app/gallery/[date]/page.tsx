@@ -1,11 +1,38 @@
-import { getApod } from '@/lib/data';
+import { getApod, getApods } from '@/lib/data';
+import { Apod } from '@/lib/types';
 import Image from 'next/image';
+import { Frown } from 'lucide-react';
+
+export const revalidate = 3600;
+
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  const date = new Date();
+  const endDate = date.toISOString().split('T')[0];
+
+  const newDate = new Date(date);
+  newDate.setDate(newDate.getDate() - 17);
+  const startDate = newDate.toISOString().split('T')[0];
+
+  const apods = await getApods(startDate, endDate);
+
+  return apods.reverse().map((apod) => ({
+    date: apod.date,
+  }));
+}
 
 export default async function Page({ params }: { params: { date: string } }) {
   const apod = await getApod(params.date);
 
-  if (apod.code === 404) {
-    return <>{apod.msg}</>;
+  if (apod.code === 400) {
+    return (
+      <div className="flex flex-col justify-center items-center gap-4">
+        <Frown size={64} />
+        <h1 className="text-2xl font-bold">No APOD for this date</h1>
+        <p>{apod.msg}</p>
+      </div>
+    );
   }
 
   if (apod.media_type === 'video' && apod.thumbnail_url !== '') {
