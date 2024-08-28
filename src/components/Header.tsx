@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 import { Button } from '@/components/ui/button';
 import { Sparkles } from 'lucide-react';
 import { ModeToggle } from './ModeToggle';

@@ -1,6 +1,6 @@
 import { getApods } from '@/lib/data';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from 'next-view-transitions';
 
 export default async function Page() {
   const date = new Date();
