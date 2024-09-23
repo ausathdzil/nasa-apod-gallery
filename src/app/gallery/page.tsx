@@ -16,8 +16,8 @@ export default async function Page() {
   newDate.setDate(newDate.getDate() - 17);
   const startDate = newDate.toISOString().split('T')[0];
 
-  const data = await getApods(startDate, endDate);
-  const apods = [...data].reverse();
+  let apods = await getApods(startDate, endDate);
+  apods = [...apods].reverse();
 
   return (
     <section className="space-y-8">

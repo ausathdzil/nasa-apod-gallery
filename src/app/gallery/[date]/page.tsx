@@ -14,7 +14,7 @@ export async function generateStaticParams() {
   newDate.setDate(newDate.getDate() - 17);
   const startDate = newDate.toISOString().split('T')[0];
 
-  const apods = await getApods(startDate, endDate);
+  let apods = await getApods(startDate, endDate);
 
   return apods.reverse().map((apod) => ({
     date: apod.date,
@@ -26,7 +26,7 @@ export async function generateMetadata({
 }: {
   params: { date: string };
 }) {
-  const apod = await getApod(params.date);
+  let apod = await getApod(params.date);
 
   return {
     title: apod?.date,
@@ -35,7 +35,7 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params }: { params: { date: string } }) {
-  const apod = await getApod(params.date);
+  let apod = await getApod(params.date);
 
   if (apod.code === 400) {
     return (
