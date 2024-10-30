@@ -1,19 +1,17 @@
-import Footer from '@/components/footer';
-import Header from '@/components/header';
-import { ThemeProvider } from '@/components/theme-provider';
-import { Metadata } from 'next';
-import { ViewTransitions } from 'next-view-transitions';
-import { Inter } from 'next/font/google';
+import Footer from '@/components/layout/footer';
+import Header from '@/components/layout/header';
+import type { Metadata } from 'next';
+import { Space_Grotesk } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
-  title: {
-    default: 'NASA APOD',
-    template: 'APOD | %s',
-  },
-  description: 'Collection of NASA Astronomy Picture of the Day',
+  title: 'NASA APOD Gallery',
+  description: 'A collection of NASA Astronomy Picture of the Day',
 };
 
 export default function RootLayout({
@@ -22,31 +20,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ViewTransitions>
-      <html lang="en">
-        <head>
-          <link
-            rel="icon"
-            type="image/svg+xml"
-            href="/sparkle.svg"
-            sizes="any"
-          />
-        </head>
-        <body className={`${inter.className} antialiased`}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Header />
-            <main className="flex flex-col justify-center items-center text-center gap-8 mx-2 sm:mx-16 lg:mx-auto max-w-5xl min-h-[calc(100vh-225px)]">
-              {children}
-            </main>
-            <Footer />
-          </ThemeProvider>
-        </body>
-      </html>
-    </ViewTransitions>
+    <html lang="en">
+      <body className={`${spaceGrotesk.className} antialiased`}>
+        <div className="flex flex-col">
+          <Header />
+          <main className="min-h-[calc(100svh-131px)]">
+            {children}
+          </main>
+          <Footer />
+        </div>
+      </body>
+    </html>
   );
 }

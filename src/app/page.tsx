@@ -6,44 +6,35 @@ export default async function Home() {
   const apod = await getApod();
 
   if (!apod) {
-    return notFound();
+    notFound();
   }
 
   return (
-    <section className="space-y-8">
-      <h1 className="font-bold text-xl sm:text-3xl">
-        Astronomy Picture of the Day
-      </h1>
-      <div className="m-4 max-w-[768px] sm:max-w-[1024px] flex flex-col lg:flex-row justify-center items-center lg:items-start gap-8">
-        <div className="w-[272px] sm:w-[500px] h-[300px] sm:h-[500px] relative">
-          {apod.media_type !== 'image' ? (
-            <iframe
-              className="rounded-xl w-[272px] h-[300px] sm:w-[500px] sm:h-[500px]"
-              src={apod.url}
-              title={apod.title}
-              allowFullScreen
-              loading="lazy"
-            />
-          ) : (
-            <Image
-              className="rounded-xl object-cover"
-              src={apod.url}
-              alt={apod.title}
-              priority={true}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 272px"
-            />
-          )}
+    <section className="flex items-start justify-between gap-8 p-4">
+      <div>
+        <div className="relative w-[700px] h-[600px]">
+          <Image
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover rounded-lg"
+            src={apod.url}
+            alt={apod.title}
+            fill
+          />
         </div>
-        <article className="space-y-4 sm:text-start max-w-[500px]">
-          <div>
-            <h1 className="text-2xl text-blue-400 font-bold">{apod.title}</h1>
-            {apod.copyright && <h1 className="font-bold">{apod.copyright}</h1>}
-            <p>{apod.date}</p>
-          </div>
-          <p className="text-start">{apod.explanation}</p>
-        </article>
       </div>
+      <article className="space-y-2 text-xl">
+        <h1 className="text-3xl text-red-500 font-bold">{apod.title}</h1>
+        <p>{apod.copyright}</p>
+        <p>
+          {new Date(apod.date).toLocaleDateString('en-us', {
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric',
+          })}
+        </p>
+        <p>{apod.explanation}</p>
+      </article>
     </section>
   );
 }
+
