@@ -14,7 +14,7 @@ export default async function APODMarquee() {
   const secondRow = filteredApods.slice(3, 6);
 
   return (
-    <section className="bg-blue-50 py-8">
+    <section className="py-8">
       <Marquee className="[--duration:40s]">
         {firstRow.map((apod) => (
           <div key={apod.title} className="relative w-[240px] h-[240px]">

@@ -23,11 +23,14 @@ export default function Header() {
         isScrolled ? 'bg-white/80 backdrop-blur-sm' : 'bg-white'
       )}
     >
-      <nav className="flex items-center gap-2">
+      <nav className="flex items-center">
         <Link className="font-bold text-blue-500" href="/">
-          NASA APOD
+          NASA APOD <span className="text-black">Gallery</span>
         </Link>
-        <Link href="/">Gallery</Link>
+        <div className="grow text-right space-x-8">
+          <Link href="/discover">Discover</Link>
+          <Link href="/about">About</Link>
+        </div>
       </nav>
     </header>
   );

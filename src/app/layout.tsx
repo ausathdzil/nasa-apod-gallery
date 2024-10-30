@@ -1,10 +1,10 @@
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
 import type { Metadata } from 'next';
-import { Space_Grotesk } from 'next/font/google';
+import { Hanken_Grotesk } from 'next/font/google';
 import './globals.css';
 
-const spaceGrotesk = Space_Grotesk({
+const hankenGrotesk = Hanken_Grotesk({
   subsets: ['latin'],
   display: 'swap',
 });
@@ -21,9 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${spaceGrotesk.className} antialiased`}>
+      <body className={`${hankenGrotesk.className} antialiased`}>
         <Header />
-        <main className="min-h-[calc(100svh-131px)]">{children}</main>
+        <main className="min-h-[calc(100svh-131px)] flex flex-col items-center justify-center">{children}</main>
         <Footer />
       </body>
     </html>
