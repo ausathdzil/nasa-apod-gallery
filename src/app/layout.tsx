@@ -22,13 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${spaceGrotesk.className} antialiased`}>
-        <div className="flex flex-col">
-          <Header />
-          <main className="min-h-[calc(100svh-131px)]">
-            {children}
-          </main>
-          <Footer />
-        </div>
+        <Header />
+        <main className="min-h-[calc(100svh-131px)]">{children}</main>
+        <Footer />
       </body>
     </html>
   );

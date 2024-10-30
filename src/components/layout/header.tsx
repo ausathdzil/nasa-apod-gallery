@@ -20,7 +20,7 @@ export default function Header() {
     <header
       className={clsx(
         'sticky top-0 z-50 text-3xl border-b border-black p-4',
-        isScrolled ? 'bg-white/70 backdrop-blur-lg' : 'bg-white'
+        isScrolled ? 'bg-white/80 backdrop-blur-sm' : 'bg-white'
       )}
     >
       <nav className="flex items-center gap-2">

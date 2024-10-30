@@ -9,7 +9,9 @@ export default async function HomeAPOD() {
     return null;
   }
 
-  const filteredApods = apods.filter((apod) => apod.media_type === 'image');
+  const filteredApods = apods
+    .filter((apod) => apod.media_type === 'image')
+    .slice(0, 7);
 
   return (
     <>
@@ -23,7 +25,7 @@ export default async function HomeAPOD() {
               <div
                 className={clsx(
                   'backdrop-blur-sm p-4 border-y border-black',
-                  isOddDay ? 'bg-blue-50/60' : 'bg-red-50/60'
+                  isOddDay ? 'bg-blue-50/80' : 'bg-red-50/60'
                 )}
               >
                 <p
@@ -42,12 +44,12 @@ export default async function HomeAPOD() {
             </div>
             <div
               className={clsx(
-                'flex items-start justify-between gap-8 p-4',
-                isOddDay ? 'bg-blue-50 flex-row-reverse' : 'bg-red-50'
+                'flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 p-4',
+                isOddDay ? 'bg-blue-50 lg:flex-row-reverse' : 'bg-red-50'
               )}
             >
               <div>
-                <div className="relative w-[700px] h-[600px]">
+                <div className="relative w-[250px] h-[250px] xl:w-[700px] xl:h-[600px]">
                   <Image
                     className="object-cover rounded-lg"
                     src={apod.url}
@@ -55,6 +57,7 @@ export default async function HomeAPOD() {
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     quality={100}
+                    priority
                   />
                 </div>
               </div>
