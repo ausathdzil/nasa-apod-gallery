@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
         hostname: 'apod.nasa.gov',
       },
     ],
+    unoptimized: true,
   },
 };
 

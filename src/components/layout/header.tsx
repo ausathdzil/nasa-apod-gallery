@@ -1,7 +1,34 @@
+'use client';
+
+import clsx from 'clsx';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
 export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <header className="border-b-2 border-black p-4">
-      <h1 className="text-3xl font-bold text-blue-500">NASA APOD Gallery</h1>
+    <header
+      className={clsx(
+        'sticky top-0 z-50 text-3xl border-b border-black p-4',
+        isScrolled ? 'bg-white/70 backdrop-blur-lg' : 'bg-white'
+      )}
+    >
+      <nav className="flex items-center gap-2">
+        <Link className="font-bold text-blue-500" href="/">
+          NASA APOD
+        </Link>
+        <Link href="/">Gallery</Link>
+      </nav>
     </header>
   );
 }

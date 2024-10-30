@@ -30,7 +30,7 @@ export async function getApod(): Promise<Apod | null> {
 
 export async function getApods(): Promise<Apod[] | null> {
   const date = new Date();
-  date.setDate(date.getDate() - 14);
+  date.setDate(date.getDate() - 7);
 
   try {
     const res = await fetch(
