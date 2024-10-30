@@ -1,5 +1,5 @@
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import Footer from '@/components/footer';
+import Header from '@/components/header';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Metadata } from 'next';
 import { ViewTransitions } from 'next-view-transitions';

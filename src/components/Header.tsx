@@ -1,20 +1,14 @@
-'use client';
-
-import { Link } from 'next-view-transitions';
+import { ModeToggle } from '@/components/mode-toggle';
 import { Button } from '@/components/ui/button';
 import { Sparkles } from 'lucide-react';
-import { ModeToggle } from './ModeToggle';
+import { Link } from 'next-view-transitions';
 
 export default function Header() {
   return (
     <header>
       <nav className="flex justify-between items-center py-8 mx-2 sm:mx-16 lg:mx-auto max-w-3xl">
         <Link href="/">
-          <Button
-            variant="link"
-            size="icon"
-            className="group"
-          >
+          <Button variant="link" size="icon" className="group">
             <Sparkles
               size={24}
               className="transition ease-in-out group-hover:scale-105 group-hover:fill-zinc-900 dark:group-hover:fill-zinc-50"
