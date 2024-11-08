@@ -38,3 +38,18 @@ export async function getApods(): Promise<Apod[] | null> {
     return null;
   }
 }
+
+export async function getApodsRange(
+  start_date: string,
+  end_date: string
+): Promise<Apod[] | null> {
+  try {
+    const res = await fetch(
+      `https://api.nasa.gov/planetary/apod?api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}&start_date=${start_date}&end_date=${end_date}&thumbs=True`
+    );
+    const data = await res.json();
+    return data.reverse();
+  } catch (error) {
+    return null;
+  }
+}

@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${hankenGrotesk.className} antialiased`}>
         <Header />
-        <main className="min-h-[calc(100svh-131px)] flex flex-col items-center justify-center">{children}</main>
+        <main className="min-h-[calc(100svh-131px)] flex flex-col items-center">{children}</main>
         <Footer />
       </body>
     </html>
