@@ -8,6 +8,8 @@ type Apod = {
   service_version: string;
   title: string;
   url: string;
+  code?: number;
+  msg?: string;
 };
 
 export async function getApod(date: string): Promise<Apod | null> {

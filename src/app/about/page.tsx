@@ -1,14 +1,15 @@
+export const dynamic = 'force-static';
+
 export default function Page() {
   return (
     <article className="p-8 prose sm:prose-lg prose-zinc">
       <h1>About NASA APOD Gallery</h1>
       <p>
-        Welcome to NASA Astronomy Picture of the Day (APOD) Gallery—a
-        curated journey through the cosmos, showcasing some of the most
-        breathtaking and thought-provoking images from NASA&apos;s vast
-        collection. Each image here captures a unique glimpse into our universe,
-        from mesmerizing nebulae and distant galaxies to rare phenomena on Earth
-        and beyond.
+        Welcome to NASA Astronomy Picture of the Day (APOD) Gallery—a curated
+        journey through the cosmos, showcasing some of the most breathtaking and
+        thought-provoking images from NASA&apos;s vast collection. Each image
+        here captures a unique glimpse into our universe, from mesmerizing
+        nebulae and distant galaxies to rare phenomena on Earth and beyond.
       </p>
       <p>
         This gallery is designed for explorers at heart, whether you&apos;re an
