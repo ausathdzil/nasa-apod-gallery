@@ -1,6 +1,6 @@
 export default function Page() {
   return (
-    <article className="py-8 prose prose-lg prose-zinc">
+    <article className="p-8 prose sm:prose-lg prose-zinc">
       <h1>About NASA APOD Gallery</h1>
       <p>
         Welcome to NASA Astronomy Picture of the Day (APOD) Gallery—a

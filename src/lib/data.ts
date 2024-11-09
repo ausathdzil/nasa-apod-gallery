@@ -30,7 +30,12 @@ export async function getApods(): Promise<Apod[] | null> {
     const res = await fetch(
       `https://api.nasa.gov/planetary/apod?api_key=${
         process.env.NEXT_PUBLIC_NASA_API_KEY
-      }&start_date=${date.toISOString().split('T')[0]}&thumbs=True`
+      }&start_date=${date.toISOString().split('T')[0]}&thumbs=True`,
+      {
+        next: {
+          revalidate: 60 * 60 * 24,
+        },
+      }
     );
     const data = await res.json();
     return data.reverse();
@@ -45,7 +50,12 @@ export async function getApodsRange(
 ): Promise<Apod[] | null> {
   try {
     const res = await fetch(
-      `https://api.nasa.gov/planetary/apod?api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}&start_date=${start_date}&end_date=${end_date}&thumbs=True`
+      `https://api.nasa.gov/planetary/apod?api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}&start_date=${start_date}&end_date=${end_date}&thumbs=True`,
+      {
+        next: {
+          revalidate: 60 * 60 * 24,
+        },
+      }
     );
     const data = await res.json();
     return data.reverse();

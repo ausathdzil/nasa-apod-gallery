@@ -5,23 +5,19 @@ import Image from 'next/image';
 export default async function HomeAPOD() {
   const apods = await getApods();
 
-  if (!apods) {
-    return null;
-  }
-
   const filteredApods = apods
-    .filter((apod) => apod.media_type === 'image')
+    ?.filter((apod) => apod.media_type === 'image')
     .slice(0, 7);
 
   return (
     <>
-      {filteredApods.map((apod) => {
+      {filteredApods?.map((apod) => {
         const day = Number(apod.date.split('-')[2]);
         const isOddDay = day % 2 !== 0;
 
         return (
           <section key={apod.title}>
-            <div className="sticky top-[68px] z-40 ">
+            <div className="sticky top-[55px] sm:top-[68px] z-40 ">
               <div
                 className={clsx(
                   'backdrop-blur-sm p-4 border-y border-black',

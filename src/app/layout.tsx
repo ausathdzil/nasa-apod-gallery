@@ -14,6 +14,8 @@ export const metadata: Metadata = {
   description: 'A collection of NASA Astronomy Picture of the Day',
 };
 
+export const dynamic = 'force-dynamic';
+
 export default function RootLayout({
   children,
 }: Readonly<{
