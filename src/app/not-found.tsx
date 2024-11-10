@@ -11,7 +11,7 @@ export default function NotFound() {
     <div className="flex flex-col items-center justify-center min-h-[calc(100svh-131px)] gap-4 text-destructive text-lg">
       <Frown size={64} />
       <p>Error - 404 Not Found</p>
-      <Button variant="link" onClick={back}>
+      <Button variant="secondary" onClick={back}>
         Go Back
       </Button>
     </div>
