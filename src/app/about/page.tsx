@@ -1,4 +1,10 @@
-export const dynamic = 'force-static';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About',
+  description:
+    'Learn more about NASA Astronomy Picture of the Day (APOD) Gallery.',
+};
 
 export default function Page() {
   return (

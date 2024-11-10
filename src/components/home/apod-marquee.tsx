@@ -1,6 +1,7 @@
 import Marquee from '@/components/ui/marquee';
 import { getApods } from '@/lib/data';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default async function APODMarquee() {
   const apods = await getApods();
@@ -13,7 +14,11 @@ export default async function APODMarquee() {
     <section className="relative flex w-full flex-col items-center justify-center overflow-hidden py-8">
       <Marquee className="[--duration:40s]">
         {firstRow?.map((apod) => (
-          <div key={apod.title} className="relative w-[240px] h-[240px]">
+          <Link
+            className="relative w-[240px] h-[240px]"
+            href={`/discover/${apod.date}`}
+            key={apod.date}
+          >
             <Image
               className="object-cover rounded-lg"
               src={apod.url}
@@ -23,12 +28,16 @@ export default async function APODMarquee() {
               quality={100}
               priority
             />
-          </div>
+          </Link>
         ))}
       </Marquee>
       <Marquee reverse className="[--duration:40s]">
         {secondRow?.map((apod) => (
-          <div key={apod.title} className="relative w-[240px] h-[240px]">
+          <Link
+            className="relative w-[240px] h-[240px]"
+            href={`/discover/${apod.date}`}
+            key={apod.date}
+          >
             <Image
               className="object-cover rounded-lg"
               src={apod.url}
@@ -38,7 +47,7 @@ export default async function APODMarquee() {
               quality={100}
               priority
             />
-          </div>
+          </Link>
         ))}
       </Marquee>
     </section>

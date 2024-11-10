@@ -1,9 +1,31 @@
 import { getApod } from '@/lib/data';
 import clsx from 'clsx';
 import { Frown } from 'lucide-react';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
+
+export const dynamic = 'force-dynamic';
+
+export async function generateMetadata(props: {
+  params: Promise<{ date: string }>;
+}): Promise<Metadata> {
+  const date = (await props.params).date;
+  const apod = await getApod(date);
+
+  if (!apod || apod.code === 400) {
+    return {
+      title: 'Error',
+      description: apod?.msg || 'An error occurred',
+    };
+  }
+
+  return {
+    title: apod.title,
+    description: apod.explanation,
+  };
+}
 
 export default async function Page(props: {
   params: Promise<{ date: string }>;
