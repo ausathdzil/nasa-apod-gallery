@@ -17,9 +17,7 @@ export async function getApod(date: string): Promise<Apod | null> {
     const res = await fetch(
       `https://api.nasa.gov/planetary/apod?api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}&date=${date}&thumbs=True`,
       {
-        next: {
-          revalidate: 60 * 60 * 24,
-        },
+        cache: 'force-cache',
       }
     );
     const data = await res.json();
@@ -40,7 +38,7 @@ export async function getApods(): Promise<Apod[] | null> {
       }&start_date=${date.toISOString().split('T')[0]}&thumbs=True`,
       {
         next: {
-          revalidate: 60 * 60 * 24,
+          revalidate: 3600,
         },
       }
     );
