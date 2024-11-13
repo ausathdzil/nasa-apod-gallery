@@ -5,6 +5,8 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
+export const fetchCache = 'force-cache';
+
 export async function generateMetadata(props: {
   params: Promise<{ date: string }>;
 }): Promise<Metadata> {
